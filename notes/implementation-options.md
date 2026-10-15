@@ -58,6 +58,16 @@ All options below are proposals. Nothing in this list establishes current platfo
 | Production-only remote | Scoped commands to a paired broadcaster | A data channel is transport; the receiver must authorize every command |
 | Private talkback | Producer sends audio cues to host | Validates coordination, not remote operations; keep audio out of public program |
 
+## Multi-operator console
+
+| Route | Where it runs | Main tradeoff |
+|---|---|---|
+| Shared host console | Multiple individually authorized sessions for one seller event | Reuses the console; needs synchronized state, action-level permissions, and concurrent-change handling |
+| Operator popout | A compact separate page for listings, chat, moderation, and permitted event actions | Focused UI; still requires backend authorization, reconnect handling, acknowledgements, and stale-action protection |
+| Role-specific desks | Dedicated listing, moderation, and event-lead workspaces | More tailored workflows; more surfaces and explicit role/handoff design |
+
+This is a control-only architecture. Operators send authenticated commands to event services and receive shared state updates. Transport does not grant authority. Audit actor identity, enforce roles at the backend, and define how conflicting actions are rejected or resolved. A copied popout URL alone must not grant seller access.
+
 ## Common media boundaries
 
 - Participants need a conversational audio path, independent of delayed public playback.

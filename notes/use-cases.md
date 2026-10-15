@@ -1,4 +1,4 @@
-# Seven collaboration use cases
+# Eight collaboration use cases
 
 ## The independent decisions
 
@@ -78,3 +78,17 @@ An off-camera collaborator helps run the show through cues or explicitly delegat
 - **First question:** spoken coordination, production-only control, or seller-account delegation?
 
 A media-room invitation must not silently grant access to inventory, orders, moderation, or broadcasting credentials.
+
+## 8. Multi-operator console
+
+Multiple signed-in teammates help run one seller's event without contributing video or joining a media room. This is an operational workspace: a listing runner can manage the queue while a moderator handles chat and another permitted operator manages event actions.
+
+- **Host entry:** an operator invitation or Open operator controls action in the host console.
+- **Popout:** listing queue and pin/unpin actions, chat replies and pinned messages, moderation, plus event actions allowed by the operator's role.
+- **Team coordination:** presence, who last changed an item, command acknowledgement, and an activity log.
+- **Permissions:** listings, chat, moderation, auctions, and ending an event are distinct capabilities. A proposed role assignment is not a claim of existing product support.
+- **Commerce:** the original seller remains the seller of record; teammates do not acquire inventory or order ownership.
+- **Media:** the broadcaster runs independently. No camera, guest video, media mixing, or P2P media transport is required for this use case.
+- **First question:** is the smallest useful experiment a detached control panel or synchronized full-console sessions?
+
+The example assigns Sam to listings and Riley to moderation, with high-impact event actions reserved for a permitted lead or owner. Those names and role boundaries are illustrative design choices.

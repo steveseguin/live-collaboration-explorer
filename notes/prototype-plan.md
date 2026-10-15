@@ -13,6 +13,7 @@ A prototype can be web, native, or server-based. Its scope should follow the unc
 | Do buyers understand two seller contexts? | Paired buyer mockup with explicit seller labels and item switching | Real cross-account permissions and orders |
 | Does a pack battle require simultaneous auctions? | Compare alternating rounds with two independent item lanes | Auction/backend integration and fulfillment |
 | Can an off-air producer help safely? | Production-only remote control or private talkback | Seller-account delegation unless separately implemented |
+| Can teammates run one show without any video collaboration? | Operator popout with listing queue, chat, moderation, scoped event controls, and synchronized state | Real account delegation and backend permissions unless actually integrated |
 
 ## A narrow media prototype
 
@@ -38,6 +39,12 @@ If native hosting is the actual objective, focus on one platform and a small dem
 - Observe device load, audio routing, disconnects, and app foreground/background behavior.
 
 This is a prototype even if it uses native code. A visual native screen alone does not establish that the media path works.
+
+## A narrow operator prototype
+
+Show the host opening a separate operator page, with two illustrative teammate roles. Include the listing queue, pin/unpin state, chat replies, moderation actions, and role-limited event controls. Show the actor and acknowledgement for each action.
+
+A UI-only prototype can explore placement and workflow with simulated state. An integrated spike should demonstrate individual sign-in, backend permission checks, shared event updates, stale-command rejection, and an auditable action trail. Neither version needs a guest call or video compositor. A second device is another useful target for the same operator page.
 
 ## Separate follow-up decisions
 
