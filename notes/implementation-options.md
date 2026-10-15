@@ -77,3 +77,21 @@ This is a control-only architecture. Operators send authenticated commands to ev
 - P2P can reduce central media processing; signaling, TURN, and connection recovery still exist.
 - A mixer cannot resolve item ownership, follower notifications, or permission enforcement.
 - A viewer that renders multiple streams needs an audio policy and a strategy for timing differences.
+
+## Designed co-host journey
+
+| Route | Placement | Tradeoff |
+|---|---|---|
+| Native guest + program mixer | Guest app, compact desktop console panel, browser/server compositor | Closest to the demonstrated guest UX; native contribution and conversation integration required |
+| Mobile web + browser mixer | Phone-friendly guest page plus separate host room | Feasibility shortcut; does not implement a native guest target |
+| Web conversation + OBS | Browser talkback and clean media source, composed OBS output | Useful desktop media demonstration; audio routing and external setup remain |
+
+## Bring a viewer on stage
+
+| Route | Placement | Tradeoff |
+|---|---|---|
+| Host invites a viewer | Private invitation from host chat action | Requires identity binding, consent, eligibility, and removal |
+| Viewer requests to join | Buyer request action and host queue | Proposed alternative; adds spam controls and queue privacy |
+| Arrange a guest moment | Pre-show invite and event-linked setup | Predictable participation; notification failures and missed segments remain |
+
+See [design handoff](design-handoff.md) for observed behavior, draft contradictions, and limits.

@@ -2,9 +2,9 @@
 
 ## Scope and provenance
 
-This repository contains Steve Seguin's illustrative scenario analysis and proposed implementation options. The screens and diagrams are original mockups, not captured product screens. All participant names, listings, prices, bids, connection states, and scores are fictional.
+This repository contains Steve Seguin's illustrative scenario analysis and proposed implementation options. The interactive screens and architecture diagrams are original mockups. Two selected earlier source flow diagrams are included separately in [sources/](../sources/README.md). All participant names, listings, prices, bids, connection states, and scores are fictional.
 
-The public notes make no claim about private product plans, current native implementation interfaces, actual deployment state, or authorized access to a live-commerce system. Internal documents, conversations, source links, and test-environment details are not included in this repository.
+The public notes make no claim about private product plans, current native implementation interfaces, actual deployment state, or authorized access to a live-commerce system. Selected flow images and a summary of a maintainer-supplied design handoff are included. Full originals, research participant details, access information, internal source links, conversations, and test-environment details are excluded from the public repository. See the [design handoff note](design-handoff.md) for the distinction between observed UX and proposed implementation routes.
 
 ## Public technical references
 

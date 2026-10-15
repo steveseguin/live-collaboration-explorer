@@ -1,4 +1,4 @@
-# Eight collaboration use cases
+# Ten collaboration use cases
 
 ## The independent decisions
 
@@ -92,3 +92,15 @@ Multiple signed-in teammates help run one seller's event without contributing vi
 - **First question:** is the smallest useful experiment a detached control panel or synchronized full-console sessions?
 
 The example assigns Sam to listings and Riley to moderation, with high-impact event actions reserved for a permitted lead or owner. Those names and role boundaries are illustrative design choices.
+
+## 9. Designed co-host journey
+
+A concrete desktop-host/mobile-guest journey reconstructed from the supplied design handoff and sampled demo visuals. Host console entry, invitation, checks, private backstage chat, admission, stacked/side-by-side/PiP layouts, and removal. The seller retains commerce authority. The interactive preview is a simulation, not a connected call.
+
+Three routes: native guest plus program mixer; mobile web guest plus browser mixer as an explicit feasibility shortcut; browser conversation plus OBS output. See [design handoff](design-handoff.md).
+
+## 10. Bring a viewer on stage
+
+A proposed extension for a collector, previous buyer, or winner to join briefly. The supplied research discusses community participation separately from the initial guest flow. The explorer compares host-selected invitation, a proposed viewer request queue, and a planned guest moment. All retain checks, backstage, host admission/removal, and the original seller's item context.
+
+Identity, consent, eligibility, reporting, spam limits, and revocation need product and engineering decisions. A viewer request queue is an alternative proposed by this study, not an established handoff feature.

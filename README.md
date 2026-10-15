@@ -1,12 +1,12 @@
 # Together on Live
 
-A visual exploration of live-commerce collaboration: **eight use cases, three implementation options each**.
+A visual exploration of live-commerce collaboration: **ten use cases, three implementation options each**.
 
 **[Browse the website](https://steveseguin.github.io/live-collaboration-explorer/)**
 
 Switch between host controls, the participant call or operator popout, and the buyer view. Select an implementation to see its connection diagram, proposed placement, and tradeoffs. Use **Compare scenarios** for the audience and commerce overview.
 
-This is an unofficial design study by Steve Seguin. All interfaces, participants, listings, and prices are illustrative. The scenarios are proposals, not statements about existing eBay capabilities or a product roadmap.
+This is an unofficial design study by Steve Seguin. Interactive interfaces, participants, listings, and prices are illustrative. Two selected source flow diagrams are labeled separately as earlier design drafts. The scenarios are proposals, not statements about existing eBay capabilities or a product roadmap.
 
 ## Scenarios
 
@@ -18,11 +18,15 @@ This is an unofficial design study by Steve Seguin. All interfaces, participants
 6. Remote camera and guest — combine a product close-up and conversation.
 7. Backstage producer — coordinate off camera with explicit permissions.
 8. Multi-operator console — share listings, chat, moderation, and permitted event actions without video.
+9. Designed co-host journey — desktop host, mobile guest, readiness, backstage, admission, and three layouts.
+10. Bring a viewer on stage — a community guest extension with host-controlled admission.
 
 ## Notes
 
+- [Design handoff](notes/design-handoff.md) — supplied guest journey, source versions, implementation gaps, and community extension.
+- [Selected source material](sources/README.md) — two draft diagrams; full originals remain in an ignored local folder.
 - [Use cases](notes/use-cases.md) — participants, audience, commerce, and placement.
-- [Implementation options](notes/implementation-options.md) — 24 possible routes and their tradeoffs.
+- [Implementation options](notes/implementation-options.md) — 30 possible routes and their tradeoffs.
 - [Prototype plan](notes/prototype-plan.md) — questions and experiments that could guide a first build.
 - [Sources and assumptions](notes/sources-and-assumptions.md) — public references and boundaries.
 
@@ -40,6 +44,8 @@ Open `http://127.0.0.1:8767/`. No install or build step is required. Google Font
 - `app.js` — scenario content, previews, and interactions.
 - `styles.css` — responsive interface styling.
 - `operators.js` / `operators.css` — control-only scenario and operator-workspace mockups.
+- `cohost.js` / `cohost.css` — interactive guest lifecycle, layouts, community extension, and source gallery.
+- `sources/` — selected design images and a source inventory.
 - `assets/` — original SVG illustrations.
 - `notes/` — Markdown design notes.
 - `.nojekyll` — direct static publishing with GitHub Pages.

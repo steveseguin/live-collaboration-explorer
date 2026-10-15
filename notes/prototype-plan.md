@@ -51,3 +51,7 @@ A UI-only prototype can explore placement and workflow with simulated state. An 
 Audience discovery and follower notifications; shared-event identity; seller switching; simultaneous auction lanes; guest eligibility; scoped permissions; order attribution; moderation; and production reliability.
 
 These should not be treated as implicitly solved by a successful media demonstration.
+
+## Starting from the supplied design
+
+The [designed co-host journey](design-handoff.md) supplies a concrete UX reference for the narrow media prototype above. Start with desktop console controls and one mobile guest. Decide whether mobile web is an explicit shortcut or a native guest is required. Keep community selection and co-selling separate from media feasibility. The interactive website illustrates lifecycle and layout choices but does not connect media or validate device behavior.

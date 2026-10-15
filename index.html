@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f6f2">
   <title>Together on Live — an eBay Live concept explorer</title>
-  <link rel="stylesheet" href="styles.css?v=2">
-  <link rel="stylesheet" href="operators.css?v=2">
-  <script src="operators.js?v=2" defer></script>
-  <script src="app.js?v=2" defer></script>
+  <link rel="stylesheet" href="styles.css?v=3">
+  <link rel="stylesheet" href="operators.css?v=3">
+  <link rel="stylesheet" href="cohost.css?v=3">
+  <script src="operators.js?v=3" defer></script>
+  <script src="cohost.js?v=3" defer></script>
+  <script src="app.js?v=3" defer></script>
 </head>
 <body>
   <header class="topbar">
@@ -17,13 +19,13 @@
   </header>
   <div class="shell">
     <aside class="sidebar">
-      <div class="side-heading"><span>THE POSSIBILITIES</span><span id="scenario-count">08</span></div>
+      <div class="side-heading"><span>THE POSSIBILITIES</span><span id="scenario-count">10</span></div>
       <nav id="scenario-nav" aria-label="Use cases"></nav>
       <div class="side-note"><span class="note-dot"></span><div><strong>Same word. Different products.</strong><p>Share a camera, a stage, an audience—or the selling.</p></div></div>
       <button class="source-link" id="sources-side">Notes & assumptions <span aria-hidden="true">↗</span></button>
     </aside>
     <main id="main-content">
-      <div class="intro"><div class="eyebrow"><span id="case-number">01 / 08</span><span class="eyebrow-line"></span><span id="case-category"></span></div><h1 id="case-title"></h1><p id="case-description"></p></div>
+      <div class="intro"><div class="eyebrow"><span id="case-number">01 / 10</span><span class="eyebrow-line"></span><span id="case-category"></span></div><h1 id="case-title"></h1><p id="case-description"></p></div>
       <div class="case-facts" id="case-facts"></div>
       <section class="visual-section" aria-label="Experience preview">
         <div class="visual-toolbar"><div class="segmented" aria-label="Preview perspective" id="perspectives"></div><span class="mockup-label">ILLUSTRATIVE CONCEPT</span></div>
@@ -38,7 +40,7 @@
       <footer class="page-footer"><span>Unofficial design exploration. All screens and participants are illustrative.</span><button id="sources-footer">Notes & open questions ↗</button></footer>
     </main>
   </div>
-  <dialog id="sources-dialog"><div class="dialog-head"><div><span class="eyebrow">NOTES & ASSUMPTIONS</span><h2>Ideas to explore. Decisions to make.</h2></div><button class="dialog-close" data-close="sources-dialog" aria-label="Close notes">×</button></div><div class="sources-content"><p>This is an unofficial design exploration by Steve Seguin, not a product announcement. All screens, people, listings, prices, and connection diagrams are illustrative. Every implementation path is a proposal.</p><h3>Read the notes</h3><a href="https://github.com/steveseguin/live-collaboration-explorer/blob/main/notes/use-cases.md" target="_blank" rel="noreferrer">Eight use cases ↗<small>What the participants share, who owns the selling, and where the controls could live.</small></a><a href="https://github.com/steveseguin/live-collaboration-explorer/blob/main/notes/implementation-options.md" target="_blank" rel="noreferrer">Twenty-four implementation options ↗<small>Browser composition, OBS, native integration, separate feeds, and server mixing.</small></a><a href="https://github.com/steveseguin/live-collaboration-explorer/blob/main/notes/prototype-plan.md" target="_blank" rel="noreferrer">Prototype plan ↗<small>Choose which uncertainty to resolve before choosing a platform.</small></a><h3>Public technical references</h3><a href="https://github.com/steveseguin/ninjasdk" target="_blank" rel="noreferrer">VDO.Ninja SDK ↗<small>A possible P2P transport for contribution and conversation. No SDK is loaded by this website.</small></a><a href="https://sdk.vdo.ninja/docs/guides.html" target="_blank" rel="noreferrer">SDK integration guide ↗<small>Media transport, application permissions, and commerce are separate responsibilities.</small></a><h3>Decisions still needed</h3><ul><li>Guest participation or seller collaboration first?</li><li>Browser host, native mobile host, or both?</li><li>One event or two linked events? One item slot or parallel auctions?</li><li>Who can invite, publish, change layouts, and sell?</li><li>How do audience discovery, orders, audio return, and reconnects work?</li></ul><p class="source-date">Created October 2026. These notes describe hypothetical designs, not existing platform capabilities or a committed roadmap. Direct P2P may require TURN relay.</p></div></dialog>
+  <dialog id="sources-dialog"><div class="dialog-head"><div><span class="eyebrow">NOTES & ASSUMPTIONS</span><h2>Ideas to explore. Decisions to make.</h2></div><button class="dialog-close" data-close="sources-dialog" aria-label="Close notes">×</button></div><div class="sources-content"><p>This is an unofficial design exploration by Steve Seguin, not a product announcement. Interactive screens, people, listings, prices, and architecture diagrams are illustrative. Two earlier source flow diagrams are labeled separately. Every implementation path is a proposal.</p><h3>Read the notes</h3><a href="https://github.com/steveseguin/live-collaboration-explorer/blob/main/notes/design-handoff.md" target="_blank" rel="noreferrer">Design handoff & selected images ↗<small>Desktop host, mobile guest, backstage admission, three layouts, and a community guest extension.</small></a><a href="https://github.com/steveseguin/live-collaboration-explorer/blob/main/notes/use-cases.md" target="_blank" rel="noreferrer">Ten use cases ↗<small>What the participants share, who owns the selling, and where the controls could live.</small></a><a href="https://github.com/steveseguin/live-collaboration-explorer/blob/main/notes/implementation-options.md" target="_blank" rel="noreferrer">Thirty implementation options ↗<small>Browser composition, OBS, native integration, separate feeds, and server mixing.</small></a><a href="https://github.com/steveseguin/live-collaboration-explorer/blob/main/notes/prototype-plan.md" target="_blank" rel="noreferrer">Prototype plan ↗<small>Choose which uncertainty to resolve before choosing a platform.</small></a><h3>Public technical references</h3><a href="https://github.com/steveseguin/ninjasdk" target="_blank" rel="noreferrer">VDO.Ninja SDK ↗<small>A possible P2P transport for contribution and conversation. No SDK is loaded by this website.</small></a><a href="https://sdk.vdo.ninja/docs/guides.html" target="_blank" rel="noreferrer">SDK integration guide ↗<small>Media transport, application permissions, and commerce are separate responsibilities.</small></a><h3>Decisions still needed</h3><ul><li>Guest participation or seller collaboration first?</li><li>Browser host, native mobile host, or both?</li><li>One event or two linked events? One item slot or parallel auctions?</li><li>Who can invite, publish, change layouts, and sell?</li><li>How do audience discovery, orders, audio return, and reconnects work?</li></ul><p class="source-date">Created October 2026. These notes describe hypothetical designs, not existing platform capabilities or a committed roadmap. Direct P2P may require TURN relay.</p></div></dialog>
   <dialog id="compare-dialog"><div class="dialog-head"><div><span class="eyebrow">THE BIG PICTURE</span><h2>What are we actually sharing?</h2></div><button class="dialog-close" data-close="compare-dialog" aria-label="Close comparison">×</button></div><div id="comparison" class="comparison"></div><div class="compare-foot">Video layout, audience discovery, and commerce ownership are independent decisions.</div></dialog>
 </body>
 </html>
