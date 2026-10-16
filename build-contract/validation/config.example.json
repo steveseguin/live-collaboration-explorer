@@ -1,0 +1,23 @@
+{
+  "environmentKind": "local",
+  "hostConsoleUrl": "https://localhost:8443/host/events/REPLACE_EVENT_A",
+  "otherEventConsoleUrl": "https://localhost:8443/host/events/REPLACE_EVENT_B",
+  "expectedEventId": "REPLACE_EVENT_A",
+  "otherEventId": "REPLACE_EVENT_B",
+  "allowedOrigins": [
+    "https://localhost:8443"
+  ],
+  "engineOrigins": [
+    "https://localhost:8443"
+  ],
+  "implementationRevision": "REPLACE_WITH_COMMIT_OR_BUILD_DIGEST",
+  "engineRevision": "REPLACE_WITH_PINNED_ENGINE_DIGEST",
+  "hostAuthState": "",
+  "headless": true,
+  "channel": "",
+  "ignoreHTTPSErrors": false,
+  "hostVideo": "fixtures-generated/host.y4m",
+  "hostAudio": "fixtures-generated/host.wav",
+  "guestVideo": "fixtures-generated/guest.y4m",
+  "guestAudio": "fixtures-generated/guest.wav"
+}

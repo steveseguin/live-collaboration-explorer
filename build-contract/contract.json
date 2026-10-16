@@ -1,0 +1,2201 @@
+{
+  "schemaVersion": 1,
+  "version": "1.0.0",
+  "status": "specified-not-accepted",
+  "createdAt": "2026-10-15",
+  "profile": "full-prototype",
+  "requirements": [
+    {
+      "id": "R001",
+      "area": "Scope",
+      "shall": "Keep one original selling account, one event, one host and at most one contributing guest; guest participation never changes seller-of-record, inventory, auction or order ownership.",
+      "basis": "user-direction",
+      "tests": [
+        "T001",
+        "T008",
+        "T012",
+        "T036"
+      ]
+    },
+    {
+      "id": "R002",
+      "area": "Access",
+      "shall": "Gate the feature off by default; disabled or ineligible users/events must neither expose the entry nor initialize VDO.Ninja, camera/mic or a publisher.",
+      "basis": "prototype-default",
+      "tests": [
+        "T002",
+        "T037"
+      ]
+    },
+    {
+      "id": "R003",
+      "area": "Access",
+      "shall": "Authorize host bootstrap, invite creation, studio commands and publish-session acquisition at a trusted boundary; reject unauthorized, cross-event and ended/cancelled-event access. UI hiding is insufficient.",
+      "basis": "prototype-default",
+      "tests": [
+        "T002",
+        "T003",
+        "T028"
+      ]
+    },
+    {
+      "id": "R004",
+      "area": "Console",
+      "shall": "Add a compact co-host entry and session status while keeping existing listing management, public chat and stream operations usable and visible.",
+      "basis": "design-reference",
+      "tests": [
+        "T001",
+        "T017",
+        "T032",
+        "T037"
+      ]
+    },
+    {
+      "id": "R005",
+      "area": "Lifetime",
+      "shall": "Maintain a single media owner and at most one outgoing program publisher per event/session; repeated launch and duplicate windows focus or attach to that owner instead of acquiring another camera or publisher.",
+      "basis": "prototype-default",
+      "tests": [
+        "T001",
+        "T012",
+        "T019",
+        "T034"
+      ]
+    },
+    {
+      "id": "R006",
+      "area": "Capture",
+      "shall": "Never acquire devices, create a peer connection or publish during SSR/module evaluation/page load; host and guest capture begins only after their explicit user action.",
+      "basis": "prototype-default",
+      "tests": [
+        "T002",
+        "T004",
+        "T037"
+      ]
+    },
+    {
+      "id": "R007",
+      "area": "Invites",
+      "shall": "Issue a guest-only, event/session-bound invitation through the trusted control service; neither the invite nor guest bootstrap may contain host privileges or event ingest credentials.",
+      "basis": "prototype-default",
+      "tests": [
+        "T003",
+        "T030"
+      ]
+    },
+    {
+      "id": "R008",
+      "area": "Invites",
+      "shall": "Make invites expire within 900 seconds before redemption, redeem atomically for one guest lease, support revocation/rotation, and reject expired, revoked or already-redeemed copies; an existing lease uses separate bounded renewal.",
+      "basis": "prototype-default",
+      "tests": [
+        "T003",
+        "T012"
+      ]
+    },
+    {
+      "id": "R009",
+      "area": "Capacity",
+      "shall": "Reject a second guest without disturbing the first; replacing a guest requires host removal/revocation first and invalidates the old connection generation.",
+      "basis": "prototype-default",
+      "tests": [
+        "T003",
+        "T012",
+        "T029"
+      ]
+    },
+    {
+      "id": "R010",
+      "area": "Guest",
+      "shall": "Show event/host identity and a clear explanation of backstage versus on-air; the guest must explicitly opt into setup/join and can decline or leave.",
+      "basis": "design-reference",
+      "tests": [
+        "T003",
+        "T004",
+        "T011",
+        "T025"
+      ]
+    },
+    {
+      "id": "R011",
+      "area": "Readiness",
+      "shall": "Check camera, microphone and live transport readiness; report Ready only after actual usable tracks and transport readiness, not merely iframe load or permission-granted state.",
+      "basis": "prototype-default",
+      "tests": [
+        "T004",
+        "T005",
+        "T039"
+      ]
+    },
+    {
+      "id": "R012",
+      "area": "Readiness",
+      "shall": "Handle permission denial/dismissal, absent/busy devices, insecure/blocked embeds and failed transport with actionable retry/direct-open guidance; failed attempts must not leak tracks or falsely report Ready.",
+      "basis": "prototype-default",
+      "tests": [
+        "T005",
+        "T027",
+        "T038"
+      ]
+    },
+    {
+      "id": "R013",
+      "area": "Backstage",
+      "shall": "Keep a joining/rejoining guest outside the public video AND public audio until explicit host admission; allow host preview and conversation independently of the program.",
+      "basis": "design-reference",
+      "tests": [
+        "T006",
+        "T008",
+        "T022"
+      ]
+    },
+    {
+      "id": "R014",
+      "area": "Backstage",
+      "shall": "Provide private host/guest text messaging labeled private; do not forward it to public buyer chat or program overlays. Private spoken host cues are not a baseline feature.",
+      "basis": "prototype-default",
+      "tests": [
+        "T007",
+        "T030",
+        "T036"
+      ]
+    },
+    {
+      "id": "R015",
+      "area": "Admission",
+      "shall": "Require output publishing before admission; apply session/generation validation and a program revision acknowledgement; stale or duplicate admission must not resurrect a removed/replaced guest. Guest UI may say On air only after that acknowledgement.",
+      "basis": "prototype-default",
+      "tests": [
+        "T008",
+        "T029",
+        "T039"
+      ]
+    },
+    {
+      "id": "R016",
+      "area": "Layout",
+      "shall": "Provide Stacked, Side by side and Picture in picture layouts in one fixed 720x1280 program at a 30 fps target; layout changes must not recapture devices or restart the publisher.",
+      "basis": "user-direction",
+      "tests": [
+        "T009",
+        "T013",
+        "T019"
+      ]
+    },
+    {
+      "id": "R017",
+      "area": "Controls",
+      "shall": "Provide guest self camera/mic controls, host program mute/camera exclusion and removal; show a camera-off placeholder, keep permissions/consent intact, and do not remotely force a physically muted guest to capture.",
+      "basis": "prototype-default",
+      "tests": [
+        "T010",
+        "T025",
+        "T033"
+      ]
+    },
+    {
+      "id": "R018",
+      "area": "Audio",
+      "shall": "Provide conversational return excluding each participant own mic and delayed buyer playback; prevent duplicate host mic capture, duplicate audio playback and doubled program audio.",
+      "basis": "user-direction",
+      "tests": [
+        "T010",
+        "T035"
+      ]
+    },
+    {
+      "id": "R019",
+      "area": "Audio",
+      "shall": "Build a separate outgoing audio bus containing host mic and only the admitted/unmuted guest; camera/video gating alone is not sufficient. Exclude private text/notification audio and delayed public-player return.",
+      "basis": "prototype-default",
+      "tests": [
+        "T006",
+        "T008",
+        "T010",
+        "T013"
+      ]
+    },
+    {
+      "id": "R020",
+      "area": "Removal",
+      "shall": "On host removal, exclude guest video/audio at program ingress within 1000 ms, invalidate its admission/lease, and return to a host-only program without restarting output; account for downstream viewer delay separately.",
+      "basis": "prototype-default",
+      "tests": [
+        "T011",
+        "T029"
+      ]
+    },
+    {
+      "id": "R021",
+      "area": "Departure",
+      "shall": "Guest leave stops guest capture/contribution and removes it from the public program; clearly offer return to viewing without granting seller controls.",
+      "basis": "design-reference",
+      "tests": [
+        "T011",
+        "T025"
+      ]
+    },
+    {
+      "id": "R022",
+      "area": "Authority",
+      "shall": "Do not grant a guest listing, chat-moderation, seller-account, start/end-event or publishing authority; media-room/director roles must not be treated as platform permissions.",
+      "basis": "user-direction",
+      "tests": [
+        "T002",
+        "T028",
+        "T030",
+        "T036"
+      ]
+    },
+    {
+      "id": "R023",
+      "area": "Preview",
+      "shall": "Label local program preview separately from delayed audience playback, and keep audience playback muted/disconnected from the conversation audio path.",
+      "basis": "prototype-default",
+      "tests": [
+        "T013",
+        "T035",
+        "T036"
+      ]
+    },
+    {
+      "id": "R024",
+      "area": "Program",
+      "shall": "Publish the custom canvas video track and explicit Web Audio program track; do not require OBS, a virtual camera, or tab/screen sharing to meet full-prototype acceptance. Stock-mixer output alone is an intermediate experiment.",
+      "basis": "user-direction",
+      "tests": [
+        "T013",
+        "T038"
+      ]
+    },
+    {
+      "id": "R025",
+      "area": "Ingest",
+      "shall": "Resolve the current event WHIP endpoint through an authorized adapter; select WHIP explicitly, never guess from RTMP/SRT/display text, and document the actual backend authorization contract.",
+      "basis": "integration-requirement",
+      "tests": [
+        "T014",
+        "T015",
+        "T036"
+      ]
+    },
+    {
+      "id": "R026",
+      "area": "Ingest",
+      "shall": "Support the selected WHIP implementation offer/answer and ICE lifecycle, successful session resource acquisition, explicit termination and resource cleanup; verify against RFC 9725 and real ingest.",
+      "basis": "prototype-default",
+      "tests": [
+        "T014",
+        "T021"
+      ]
+    },
+    {
+      "id": "R027",
+      "area": "Status",
+      "shall": "Distinguish preview-ready, transport connecting, publishing, audience-confirmed and fault states; prove outgoing media with independent receiver evidence, not an iframe load or connected label.",
+      "basis": "prototype-default",
+      "tests": [
+        "T008",
+        "T013",
+        "T039"
+      ]
+    },
+    {
+      "id": "R028",
+      "area": "Ingest",
+      "shall": "Handle ingestion endpoint refresh/authorization failure with bounded recovery and fresh authorization; do not retain/retry obsolete credentials indefinitely or silently switch to another event.",
+      "basis": "integration-requirement",
+      "tests": [
+        "T015",
+        "T023"
+      ]
+    },
+    {
+      "id": "R029",
+      "area": "Commerce",
+      "shall": "Start/stop publishing must not automatically start/end the platform event or bypass existing seller-consent/authorization flows; an ended event closes guest admission and tears down output after detection within 5000 ms.",
+      "basis": "integration-requirement",
+      "tests": [
+        "T002",
+        "T016",
+        "T036"
+      ]
+    },
+    {
+      "id": "R030",
+      "area": "Lifetime",
+      "shall": "A separate studio owns media across console tab changes, console reload and navigation to another event; the studio stays bound to its original event and cannot silently retarget.",
+      "basis": "prototype-default",
+      "tests": [
+        "T017",
+        "T021"
+      ]
+    },
+    {
+      "id": "R031",
+      "area": "PiP",
+      "shall": "Offer Document PiP from the studio top-level window on a user gesture; feature-detect it and provide a usable ordinary-window fallback when unavailable/denied. Require real supported-browser PiP evidence.",
+      "basis": "user-direction",
+      "tests": [
+        "T018",
+        "T019"
+      ]
+    },
+    {
+      "id": "R032",
+      "area": "PiP",
+      "shall": "Keep the live VDO.Ninja iframe and media ownership stable across float/return; do not reparent/reload a running iframe or create a second engine/camera/publisher during a UI transition.",
+      "basis": "prototype-default",
+      "tests": [
+        "T019",
+        "T020"
+      ]
+    },
+    {
+      "id": "R033",
+      "area": "PiP",
+      "shall": "Closing/returning the PiP view restores controls/rendering to the studio and continues the same program within 1000 ms; the program frame producer must remain active while console interactions continue.",
+      "basis": "prototype-default",
+      "tests": [
+        "T019",
+        "T020",
+        "T034"
+      ]
+    },
+    {
+      "id": "R034",
+      "area": "Lifetime",
+      "shall": "Handle blocked popups and studio stop/close/crash explicitly; closing PiP is not stopping output. Normal studio stop releases resources, and crash/lost-owner leases expire within 10000 ms.",
+      "basis": "prototype-default",
+      "tests": [
+        "T001",
+        "T021"
+      ]
+    },
+    {
+      "id": "R035",
+      "area": "Recovery",
+      "shall": "Detect guest track/connection loss within 2000 ms then exclude its program media within another 1000 ms; reconnect returns to checks/backstage and requires a fresh admission.",
+      "basis": "prototype-default",
+      "tests": [
+        "T022",
+        "T026"
+      ]
+    },
+    {
+      "id": "R036",
+      "area": "Devices",
+      "shall": "Handle host camera/mic loss or device switching with truthful state, a placeholder/silence and actionable recovery; restore capture only with appropriate consent, without duplicate live tracks.",
+      "basis": "prototype-default",
+      "tests": [
+        "T010",
+        "T033"
+      ]
+    },
+    {
+      "id": "R037",
+      "area": "Recovery",
+      "shall": "Bound automatic output retries to three at 1, 2 and 4 seconds (jitter up to 20%); expose a stable fault and manual retry thereafter, preserve event binding and never auto-readmit a guest.",
+      "basis": "prototype-default",
+      "tests": [
+        "T015",
+        "T022",
+        "T023"
+      ]
+    },
+    {
+      "id": "R038",
+      "area": "Connectivity",
+      "shall": "Demonstrate actual direct and forced-TURN relay contribution paths with selected candidate-pair evidence; simulated packet loss or a configured TURN URL is not relay proof.",
+      "basis": "prototype-default",
+      "tests": [
+        "T024"
+      ]
+    },
+    {
+      "id": "R039",
+      "area": "Mobile",
+      "shall": "Support physical Android Chrome and iPhone Safari guest flows: permission grant, preflight, backstage, admission, self mute/camera and leave; emulation is not a substitute.",
+      "basis": "prototype-default",
+      "tests": [
+        "T025"
+      ]
+    },
+    {
+      "id": "R040",
+      "area": "Mobile",
+      "shall": "Handle orientation/camera switching and foreground/background/lock transitions; on observed mute/end/suspension exclude the guest within 2000 ms, and require renewed readiness/admission after interruption.",
+      "basis": "prototype-default",
+      "tests": [
+        "T026"
+      ]
+    },
+    {
+      "id": "R041",
+      "area": "Compatibility",
+      "shall": "For unsupported host capabilities, missing canvas capture or blocked guest embeds, explain the limitation and offer a safe supported-browser/direct-open path; do not fake a successful fallback.",
+      "basis": "prototype-default",
+      "tests": [
+        "T027",
+        "T038"
+      ]
+    },
+    {
+      "id": "R042",
+      "area": "Messaging",
+      "shall": "Validate origin, source window, schema version, event/session IDs, sender capability, generation, request ID and sequence before applying studio/engine commands. Reject forged, cross-event and stale messages.",
+      "basis": "prototype-default",
+      "tests": [
+        "T028",
+        "T029"
+      ]
+    },
+    {
+      "id": "R043",
+      "area": "Secrets",
+      "shall": "Keep real host authentication, ingest tokens and publish resources out of guest payloads/URLs, DOM-visible fields, persistent browser storage, analytics and exported logs; invite capabilities are short-lived and must be redacted in shareable evidence.",
+      "basis": "prototype-default",
+      "tests": [
+        "T003",
+        "T030"
+      ]
+    },
+    {
+      "id": "R044",
+      "area": "Ordering",
+      "shall": "Make destructive and admission commands idempotent with acknowledgement and ordering; reject commands from previous generations after removal, replacement or reconnect.",
+      "basis": "prototype-default",
+      "tests": [
+        "T012",
+        "T029"
+      ]
+    },
+    {
+      "id": "R045",
+      "area": "Origins",
+      "shall": "Use a documented exact-same-origin engine/media-access deployment or a verified explicit frame/audio bridge; iframe control alone and sibling subdomains do not grant parent access to video DOM/streams.",
+      "basis": "prototype-default",
+      "tests": [
+        "T013",
+        "T038"
+      ]
+    },
+    {
+      "id": "R046",
+      "area": "Reproducibility",
+      "shall": "Pin the VDO.Ninja engine source/build, implementation revision and host browser versions in the build manifest/evidence; do not treat a changing alpha URL as a reproducible dependency.",
+      "basis": "prototype-default",
+      "tests": [
+        "T038",
+        "T039"
+      ]
+    },
+    {
+      "id": "R047",
+      "area": "Diagnostics",
+      "shall": "Provide opt-in read-only redacted diagnostics for session/generation/program revision, admission, track counts, frame timestamps, output counters, owner/lease and fault state; no diagnostic action may bypass admission or authorization.",
+      "basis": "prototype-default",
+      "tests": [
+        "T028",
+        "T039"
+      ]
+    },
+    {
+      "id": "R048",
+      "area": "Accessibility",
+      "shall": "Make all critical controls keyboard-operable with accessible names, status announcements and predictable focus; restore focus after PiP return/error and do not announce private messages publicly.",
+      "basis": "prototype-default",
+      "tests": [
+        "T031"
+      ]
+    },
+    {
+      "id": "R049",
+      "area": "Responsive",
+      "shall": "Keep the guest journey usable at a 360x640 CSS viewport and the host console at 1280x720; avoid clipped controls, hidden buyer chat and horizontal overflow in critical controls.",
+      "basis": "prototype-default",
+      "tests": [
+        "T001",
+        "T032"
+      ]
+    },
+    {
+      "id": "R050",
+      "area": "Integration",
+      "shall": "Follow the target application's SSR, context, grants, exports, logging, state, localization and code-generation conventions; preserve feature-off behavior and existing host listings/chat/event controls.",
+      "basis": "integration-requirement",
+      "tests": [
+        "T037"
+      ]
+    },
+    {
+      "id": "R051",
+      "area": "Integration",
+      "shall": "Keep studio/engine messaging separate from existing commerce buses; route platform player events through the application's documented callback/command bus rather than raw top-window messages.",
+      "basis": "integration-requirement",
+      "tests": [
+        "T028",
+        "T037"
+      ]
+    },
+    {
+      "id": "R052",
+      "area": "Cleanup",
+      "shall": "Dispose owned camera/mic tracks, audio contexts/nodes, render callbacks/workers, listeners/channels, peer connections and WHIP resources on final stop; component/view teardown must not dispose another owner session.",
+      "basis": "prototype-default",
+      "tests": [
+        "T020",
+        "T021",
+        "T034"
+      ]
+    },
+    {
+      "id": "R053",
+      "area": "Performance",
+      "shall": "On the declared controlled desktop profile, deliver at least 25 decoded program fps for a 30 fps target, with no unplanned moving-fixture freeze over 1000 ms during normal interaction/PiP transitions.",
+      "basis": "prototype-default",
+      "tests": [
+        "T019",
+        "T034"
+      ]
+    },
+    {
+      "id": "R054",
+      "area": "Timing",
+      "shall": "On the defined controlled network, keep p95 A/V skew at or below 150 ms, p95 one-way conversational delay at or below 750 ms and p95 local ingest/receiver delay at or below 2000 ms; measure audience CDN delay separately.",
+      "basis": "prototype-default",
+      "tests": [
+        "T035",
+        "T036"
+      ]
+    },
+    {
+      "id": "R055",
+      "area": "Soak",
+      "shall": "Complete 1800 seconds of interaction/media soak with at most one program publisher, no unbounded frame queues and renderer JS heap median growth at or below 100 MiB between post-warmup and final five-minute windows.",
+      "basis": "prototype-default",
+      "tests": [
+        "T034"
+      ]
+    },
+    {
+      "id": "R056",
+      "area": "Buyer",
+      "shall": "Show the admitted guest and host-only return in actual QA buyer playback with the original event/seller/item context; record audience delay and at least two program revision transitions.",
+      "basis": "design-reference",
+      "tests": [
+        "T036"
+      ]
+    },
+    {
+      "id": "R057",
+      "area": "Evidence",
+      "shall": "Keep a revision-bound ledger with required artifacts, measurements and every required test variant; missing, partial, failed, blocked, skipped, mock-only or stale results cannot count as full acceptance.",
+      "basis": "user-direction",
+      "tests": [
+        "T039",
+        "T040"
+      ]
+    },
+    {
+      "id": "R058",
+      "area": "Environment",
+      "shall": "Run mutation/media tests only against an explicitly configured local/QA environment and prepared test event/accounts; no real purchases/bids, production publishing or public credential/artifact uploads.",
+      "basis": "prototype-default",
+      "tests": [
+        "T016",
+        "T036",
+        "T040"
+      ]
+    },
+    {
+      "id": "R059",
+      "area": "Scope",
+      "shall": "Document the mobile-web guest shortcut and defer native-app integration, mobile hosting, shared selling, parallel auctions, community queues, multiple guests and operator permissions from this contract.",
+      "basis": "user-direction",
+      "tests": [
+        "T025",
+        "T036",
+        "T040"
+      ]
+    },
+    {
+      "id": "R060",
+      "area": "Handoff",
+      "shall": "Deliver setup/run commands, integration decisions, pinned dependencies, validation evidence and known limitations; this review package and its tools must not modify the inspected host application checkout. Future implementation uses a separately authorized checkout.",
+      "basis": "user-direction",
+      "tests": [
+        "T037",
+        "T040"
+      ]
+    }
+  ],
+  "tests": [
+    {
+      "id": "T001",
+      "title": "Console entry, popup failure and singleton launch",
+      "method": "browser",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Open a prepared eligible host event with the feature enabled.",
+        "Activate Open co-host studio twice; inspect the studio and console.",
+        "Repeat with popup creation denied and inspect recovery guidance."
+      ],
+      "expected": [
+        "Listings and buyer chat remain usable.",
+        "One studio/media owner is created; second action focuses it.",
+        "Popup failure is visible and no hidden capture/publisher starts."
+      ],
+      "evidenceKinds": [
+        "playwright-json",
+        "screenshot"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R001",
+        "R004",
+        "R005",
+        "R034",
+        "R049"
+      ],
+      "automatedImplementation": "validation/browser/studio.spec.mjs"
+    },
+    {
+      "id": "T002",
+      "title": "Feature, authorization and event-state rejection",
+      "method": "assisted-integration",
+      "variants": [
+        "feature-off",
+        "unauthorized-host",
+        "wrong-event",
+        "ended-event",
+        "cancelled-event"
+      ],
+      "steps": [
+        "Try the console entry and direct bootstrap URLs for each variant.",
+        "Attempt invite/publish operations at the service boundary using the denied principal or event.",
+        "Inspect network, capture indicators and event state."
+      ],
+      "expected": [
+        "Both UI and trusted boundary deny the action.",
+        "Feature-off initializes no VDO.Ninja/capture/output.",
+        "Existing seller-consent and grants remain effective."
+      ],
+      "evidenceKinds": [
+        "network-summary",
+        "screenshot",
+        "service-log"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R002",
+        "R003",
+        "R006",
+        "R022",
+        "R029"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T003",
+      "title": "Invite lifecycle and least privilege",
+      "method": "assisted-integration",
+      "variants": [
+        "valid",
+        "wrong-event",
+        "expired",
+        "revoked",
+        "reused",
+        "concurrent-redemption",
+        "declined"
+      ],
+      "steps": [
+        "Create an invite for event A; inspect redacted guest bootstrap.",
+        "Attempt the variant against event B and unauthorized host actions as appropriate.",
+        "Revoke/rotate/redeem and retry the original link, including simultaneous redemption requests; for declined, explicitly decline before capture."
+      ],
+      "expected": [
+        "Only one valid event-bound guest lease is issued.",
+        "Expired/revoked/redeemed capabilities cannot join anew; decline does not capture and clearly exits setup.",
+        "No host/ingest authority or secrets appear in guest data."
+      ],
+      "evidenceKinds": [
+        "network-summary",
+        "service-log",
+        "screenshot"
+      ],
+      "metrics": [
+        {
+          "key": "inviteTtlSeconds",
+          "op": "<=",
+          "value": 900
+        }
+      ],
+      "requirements": [
+        "R003",
+        "R007",
+        "R008",
+        "R009",
+        "R010",
+        "R043"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T004",
+      "title": "Guest device checks and backstage join",
+      "method": "browser",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Use controlled fake host/guest devices in separate browser processes.",
+        "Open a freshly issued invitation, click Check devices, then Join backstage.",
+        "Read readiness and guest status in both views."
+      ],
+      "expected": [
+        "Nothing captures before an explicit action.",
+        "Actual tracks and transport establish readiness.",
+        "Guest is Backstage; Bring guest on air is shown but remains disabled until output is publishing; no On air label appears yet."
+      ],
+      "evidenceKinds": [
+        "playwright-json",
+        "screenshot"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R006",
+        "R010",
+        "R011"
+      ],
+      "automatedImplementation": "validation/browser/studio.spec.mjs"
+    },
+    {
+      "id": "T005",
+      "title": "Permission and device failure recovery",
+      "method": "assisted-browser",
+      "variants": [
+        "camera-denied",
+        "mic-denied",
+        "prompt-dismissed",
+        "missing-device",
+        "busy-device",
+        "iframe-policy-denied"
+      ],
+      "steps": [
+        "Begin guest setup with the selected permission/device failure.",
+        "Inspect status, available guidance and active tracks.",
+        "Correct the condition and explicitly retry."
+      ],
+      "expected": [
+        "No false Ready or On air state.",
+        "A clear retry/direct-open path is available and capture resources are not leaked.",
+        "Successful retry reaches backstage once."
+      ],
+      "evidenceKinds": [
+        "screen-recording",
+        "diagnostic-export"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R011",
+        "R012"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T006",
+      "title": "Backstage media isolation at independent receiver",
+      "method": "media",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Publish the moving red host fixture with a 440 Hz tone; join the moving blue guest fixture with an 880 Hz tone backstage.",
+        "Record an independent program receiver for at least 15 seconds after stabilization.",
+        "Analyze the interval excluding only the declared startup grace."
+      ],
+      "expected": [
+        "Host video/audio are present.",
+        "Guest video/audio are absent even while host preview/private conversation works.",
+        "Receiver recording, not local UI, is the oracle."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "media-analysis",
+        "event-timeline"
+      ],
+      "metrics": [
+        {
+          "key": "hostRedMinFraction",
+          "op": ">=",
+          "value": 0.02
+        },
+        {
+          "key": "guestBlueMaxFraction",
+          "op": "<=",
+          "value": 0.001
+        },
+        {
+          "key": "hostToneMinDbfs",
+          "op": ">=",
+          "value": -35
+        },
+        {
+          "key": "guestToneMaxDbfs",
+          "op": "<=",
+          "value": -55
+        }
+      ],
+      "requirements": [
+        "R013",
+        "R019"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T007",
+      "title": "Private backstage text",
+      "method": "browser",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Join a guest backstage.",
+        "Send unique text from the host and a reply from the guest using Private message.",
+        "Inspect both private conversations and the visible public buyer chat region."
+      ],
+      "expected": [
+        "Both private participants see the text once.",
+        "Public buyer chat does not show either message.",
+        "Labels clearly identify the private conversation."
+      ],
+      "evidenceKinds": [
+        "playwright-json",
+        "screenshot"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R014"
+      ],
+      "automatedImplementation": "validation/browser/studio.spec.mjs"
+    },
+    {
+      "id": "T008",
+      "title": "Admission and true public program transition",
+      "method": "media",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Begin in the T006 state with independent recording active.",
+        "Host clicks Bring guest on air and records the command/program revision time.",
+        "Inspect guest acknowledgement and the stabilized receiver interval."
+      ],
+      "expected": [
+        "Guest becomes On air only after admission acknowledgement.",
+        "Red host and blue guest plus both tones reach the real program.",
+        "Publisher/session IDs and original seller remain unchanged."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "media-analysis",
+        "event-timeline",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "hostRedMinFraction",
+          "op": ">=",
+          "value": 0.02
+        },
+        {
+          "key": "guestBlueMinFraction",
+          "op": ">=",
+          "value": 0.01
+        },
+        {
+          "key": "hostToneMinDbfs",
+          "op": ">=",
+          "value": -35
+        },
+        {
+          "key": "guestToneMinDbfs",
+          "op": ">=",
+          "value": -35
+        }
+      ],
+      "requirements": [
+        "R001",
+        "R013",
+        "R015",
+        "R019",
+        "R027"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T009",
+      "title": "All program layouts without republishing",
+      "method": "media",
+      "variants": [
+        "stacked",
+        "side-by-side",
+        "picture-in-picture"
+      ],
+      "steps": [
+        "Admit the marked guest and keep independent recording active.",
+        "Select the required layout.",
+        "Compare fit/crop/labels, output dimensions and session/track IDs before and after."
+      ],
+      "expected": [
+        "Layout matches its name and both source identities remain visible.",
+        "Output remains exactly 720x1280.",
+        "No camera reacquisition, publisher restart or duplicate audio."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "media-analysis",
+        "screenshot",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "width",
+          "op": "==",
+          "value": 720
+        },
+        {
+          "key": "height",
+          "op": "==",
+          "value": 1280
+        },
+        {
+          "key": "publisherSessionChanges",
+          "op": "==",
+          "value": 0
+        }
+      ],
+      "requirements": [
+        "R016"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T010",
+      "title": "Camera/mic controls and program audio buses",
+      "method": "media",
+      "variants": [
+        "guest-mic",
+        "host-program-mute",
+        "guest-camera",
+        "host-camera-exclusion"
+      ],
+      "steps": [
+        "While on air, independently operate guest self-mute/camera and host program exclusion.",
+        "Record receiver intervals for each action; inspect caller return and local consent state.",
+        "Restore the permitted state explicitly."
+      ],
+      "expected": [
+        "Mute excludes the selected public voice without doubling another voice.",
+        "Camera exclusion shows a placeholder rather than frozen guest video.",
+        "Host cannot force a guest physical capture on after local denial/mute."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "media-analysis",
+        "event-timeline",
+        "screen-recording"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R017",
+        "R018",
+        "R019",
+        "R036"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T011",
+      "title": "Removal and voluntary leave",
+      "method": "media",
+      "variants": [
+        "host-removes",
+        "guest-leaves"
+      ],
+      "steps": [
+        "Admit marked guest with independent recording/timeline active.",
+        "Perform the variant.",
+        "Measure exclusion at program ingress, inspect guest state and original publisher continuity."
+      ],
+      "expected": [
+        "Guest media is excluded within 1000 ms of the acknowledged command.",
+        "Original host continues without a publisher restart.",
+        "Leave stops guest capture; removal invalidates the previous admission/lease."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "media-analysis",
+        "event-timeline",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "programExclusionMs",
+          "op": "<=",
+          "value": 1000
+        },
+        {
+          "key": "publisherSessionChanges",
+          "op": "==",
+          "value": 0
+        }
+      ],
+      "requirements": [
+        "R010",
+        "R020",
+        "R021"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T012",
+      "title": "Capacity, repeated joins and replacement",
+      "method": "browser",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Join one guest backstage.",
+        "Attempt the redeemed invitation from a separate browser session; trusted concurrent redemption/capacity is additionally exercised in T003.",
+        "Remove the first guest, issue a fresh invitation and join the replacement; retry the old page."
+      ],
+      "expected": [
+        "Second contribution is rejected without disturbing the first.",
+        "Replacement reaches backstage after explicit removal.",
+        "Old guest cannot regain on-air status by retrying."
+      ],
+      "evidenceKinds": [
+        "playwright-json",
+        "screenshot"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R001",
+        "R005",
+        "R008",
+        "R009",
+        "R044"
+      ],
+      "automatedImplementation": "validation/browser/studio.spec.mjs"
+    },
+    {
+      "id": "T013",
+      "title": "Actual custom canvas/audio publishing pipeline",
+      "method": "media",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Start publishing from our studio with marked source fixtures.",
+        "Inspect the selected output tracks and independent receiver.",
+        "Verify local preview is identified separately from delayed audience playback and no tab-share/OBS/virtual-camera dependency is used."
+      ],
+      "expected": [
+        "The video source is the custom canvas and audio source is the explicit program bus.",
+        "Independent receiver contains intended media.",
+        "Capture, output bytes and receiver evidence agree."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "media-analysis",
+        "diagnostic-export",
+        "network-summary"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R016",
+        "R019",
+        "R023",
+        "R024",
+        "R027",
+        "R045"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T014",
+      "title": "WHIP negotiation and session resource lifecycle",
+      "method": "protocol-integration",
+      "variants": [
+        "controlled-protocol",
+        "real-ingest"
+      ],
+      "steps": [
+        "Acquire event-authorized WHIP configuration.",
+        "Start and stop publishing against the selected receiver, capturing a redacted protocol summary.",
+        "Exercise response/ICE failure handling without creating duplicate sessions."
+      ],
+      "expected": [
+        "Observe offer/answer, successful session acquisition and resource URL, and actual media for the real-ingest variant.",
+        "Explicit stop attempts authenticated session DELETE.",
+        "Protocol fixture success alone does not establish real ingest compatibility."
+      ],
+      "evidenceKinds": [
+        "network-summary",
+        "diagnostic-export",
+        "service-log"
+      ],
+      "metrics": [
+        {
+          "key": "postStatus",
+          "op": "==",
+          "value": 201
+        },
+        {
+          "key": "resourceLocationPresent",
+          "op": "==",
+          "value": true
+        },
+        {
+          "key": "deleteAttempted",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "requirements": [
+        "R025",
+        "R026"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T015",
+      "title": "Endpoint rotation and expired authorization",
+      "method": "assisted-integration",
+      "variants": [
+        "endpoint-updated",
+        "authorization-expired",
+        "no-whip"
+      ],
+      "steps": [
+        "Publish against prepared event endpoint A.",
+        "Rotate the event endpoint or invalidate its authorization using the test control service.",
+        "Observe the existing endpoint-update flow, fresh authorization and bounded reconnect."
+      ],
+      "expected": [
+        "No indefinite obsolete endpoint/token retries.",
+        "Program remains bound to the original event; unsupported/no-WHIP configuration is a clear fault.",
+        "Fresh endpoint is used only after trusted resolution."
+      ],
+      "evidenceKinds": [
+        "network-summary",
+        "service-log",
+        "event-timeline",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "unboundedRetryObserved",
+          "op": "==",
+          "value": false
+        }
+      ],
+      "requirements": [
+        "R025",
+        "R028",
+        "R037"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T016",
+      "title": "Publishing versus event lifecycle",
+      "method": "browser",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Use a prepared non-production event; record event state and original Start/End controls.",
+        "Start then stop publishing from the studio.",
+        "Inspect event state and action traffic; exercise a prepared ended-event transition separately in integrated validation."
+      ],
+      "expected": [
+        "Publishing start/stop alone does not start/end the seller event.",
+        "Existing event consent and start/end actions remain separate.",
+        "No purchase, bid or real commerce action is performed."
+      ],
+      "evidenceKinds": [
+        "playwright-json",
+        "screenshot"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R029",
+        "R058"
+      ],
+      "automatedImplementation": "validation/browser/studio.spec.mjs"
+    },
+    {
+      "id": "T017",
+      "title": "Console navigation, reload and event binding",
+      "method": "browser",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Launch the studio and join a guest.",
+        "Switch console tabs, then reload the console.",
+        "Navigate the console to a different prepared event and inspect the original studio/session."
+      ],
+      "expected": [
+        "Studio and media owner persist.",
+        "Session stays bound to event A and is never retargeted to event B.",
+        "Existing listings/chat controls remain available."
+      ],
+      "evidenceKinds": [
+        "playwright-json",
+        "screenshot"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R004",
+        "R030"
+      ],
+      "automatedImplementation": "validation/browser/studio.spec.mjs"
+    },
+    {
+      "id": "T018",
+      "title": "Real Document PiP and fallback",
+      "method": "headed-browser",
+      "variants": [
+        "chrome",
+        "edge",
+        "unsupported-or-denied"
+      ],
+      "steps": [
+        "Launch a studio in the chosen host browser.",
+        "Activate Float studio from a top-level user gesture.",
+        "Exercise unavailable/denied PiP in the fallback variant."
+      ],
+      "expected": [
+        "Supported browser creates an actual always-on-top Document PiP view with usable controls.",
+        "Unsupported/denied path stays usable in the ordinary studio window.",
+        "No embedded iframe attempts to invoke the API as top-level."
+      ],
+      "evidenceKinds": [
+        "screen-recording",
+        "screenshot",
+        "diagnostic-export"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R031"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T019",
+      "title": "PiP continuity and normal console interaction",
+      "method": "media",
+      "variants": [
+        "chrome",
+        "edge"
+      ],
+      "steps": [
+        "Admit moving/audio-marked guest and record an independent receiver.",
+        "Float/return ten times while using listings/chat and switching focus.",
+        "Observe engine/session/track IDs, output motion and active publisher counts."
+      ],
+      "expected": [
+        "No live iframe reload/reparent, duplicate camera or session.",
+        "Program continues at acceptance frame rate without a freeze over 1000 ms.",
+        "Floating control actions affect the same program."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "media-analysis",
+        "event-timeline",
+        "screen-recording",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "decodedFps",
+          "op": ">=",
+          "value": 25
+        },
+        {
+          "key": "maxFreezeMs",
+          "op": "<=",
+          "value": 1000
+        },
+        {
+          "key": "engineGenerationChanges",
+          "op": "==",
+          "value": 0
+        },
+        {
+          "key": "publisherSessionChanges",
+          "op": "==",
+          "value": 0
+        },
+        {
+          "key": "floatReturnCycles",
+          "op": ">=",
+          "value": 10
+        }
+      ],
+      "requirements": [
+        "R005",
+        "R016",
+        "R031",
+        "R032",
+        "R033",
+        "R053"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T020",
+      "title": "PiP close is not studio stop",
+      "method": "media",
+      "variants": [
+        "browser-close",
+        "return-control"
+      ],
+      "steps": [
+        "Record the program with the guest on air in a floated view.",
+        "Close PiP through browser chrome, then repeat using Return studio.",
+        "Inspect restoration, output continuity and resource ownership."
+      ],
+      "expected": [
+        "Controls/rendering restore to the ordinary studio within 1000 ms.",
+        "Original engine/publisher continue and local capture remains owned once.",
+        "Final Stop publishing remains a separate action."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "media-analysis",
+        "event-timeline",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "restoreMs",
+          "op": "<=",
+          "value": 1000
+        },
+        {
+          "key": "publisherSessionChanges",
+          "op": "==",
+          "value": 0
+        }
+      ],
+      "requirements": [
+        "R032",
+        "R033",
+        "R052"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T021",
+      "title": "Studio stop, close and lost-owner cleanup",
+      "method": "assisted-integration",
+      "variants": [
+        "normal-stop",
+        "normal-close",
+        "cancel-close",
+        "crash-or-lost-owner"
+      ],
+      "steps": [
+        "Publish and join a guest.",
+        "Exercise explicit stop/normal close, cancel-close where browser permits, and process-crash/lost-owner lease variants.",
+        "Observe capture indicators, receiver end, session DELETE, listeners and owner expiry."
+      ],
+      "expected": [
+        "Normal final stop leaves no owned capture/output resources.",
+        "Cancelled close preserves output.",
+        "Crash/lost-owner lease expires within 10000 ms; returning views cannot revive it."
+      ],
+      "evidenceKinds": [
+        "screen-recording",
+        "diagnostic-export",
+        "network-summary",
+        "service-log"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R026",
+        "R030",
+        "R034",
+        "R052"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T022",
+      "title": "Guest loss and explicit re-admission",
+      "method": "fault-injection",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Admit a guest and record program/timeline.",
+        "Interrupt only guest connectivity/tracks for at least three seconds.",
+        "Restore connectivity and inspect setup/backstage before trying a new admission."
+      ],
+      "expected": [
+        "Loss detection plus exclusion takes at most 3000 ms.",
+        "Stale/frozen guest is replaced by host-only/placeholder output.",
+        "Recovered guest is backstage, never automatically on air."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "media-analysis",
+        "event-timeline",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "lossToExclusionMs",
+          "op": "<=",
+          "value": 3000
+        },
+        {
+          "key": "automaticReadmissions",
+          "op": "==",
+          "value": 0
+        }
+      ],
+      "requirements": [
+        "R013",
+        "R035",
+        "R037"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T023",
+      "title": "Host/output transport faults and bounded retries",
+      "method": "fault-injection",
+      "variants": [
+        "network-loss",
+        "receiver-errors"
+      ],
+      "steps": [
+        "Publish against the controlled ingest.",
+        "Interrupt output connectivity or return retryable signaling errors.",
+        "Measure attempts, backoff and stable fault; explicitly request recovery."
+      ],
+      "expected": [
+        "At most three automatic retries at 1/2/4 seconds plus bounded jitter.",
+        "Stable fault is actionable and truthful.",
+        "Recovery keeps event binding and guest admission safe."
+      ],
+      "evidenceKinds": [
+        "network-summary",
+        "event-timeline",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "automaticRetries",
+          "op": "<=",
+          "value": 3
+        },
+        {
+          "key": "automaticReadmissions",
+          "op": "==",
+          "value": 0
+        }
+      ],
+      "requirements": [
+        "R028",
+        "R037"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T024",
+      "title": "Real direct and TURN-relayed contribution",
+      "method": "network-integration",
+      "variants": [
+        "direct",
+        "forced-relay"
+      ],
+      "steps": [
+        "Use separate host/guest network endpoints with declared ICE configuration.",
+        "Force the selected connectivity route.",
+        "Join, converse, admit and capture selected ICE candidate-pair plus real output evidence."
+      ],
+      "expected": [
+        "Actual selected candidate type demonstrates the route, not just a TURN URL in configuration.",
+        "Media/admission work through the route.",
+        "Missing TURN service is BLOCKED, not a pass."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "diagnostic-export",
+        "network-summary"
+      ],
+      "metrics": [
+        {
+          "key": "selectedCandidateType",
+          "op": "in",
+          "value": [
+            "host",
+            "srflx"
+          ],
+          "variants": [
+            "direct"
+          ]
+        },
+        {
+          "key": "selectedCandidateType",
+          "op": "==",
+          "value": "relay",
+          "variants": [
+            "forced-relay"
+          ]
+        }
+      ],
+      "requirements": [
+        "R038"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T025",
+      "title": "Physical mobile guest happy path",
+      "method": "real-device",
+      "variants": [
+        "android-chrome",
+        "iphone-safari"
+      ],
+      "steps": [
+        "Use a physical supported phone over HTTPS and a headed desktop host.",
+        "Follow an invitation through consent, permissions, checks, backstage, admission and controls.",
+        "Leave and verify capture indicators stop; record device/browser/OS versions."
+      ],
+      "expected": [
+        "All critical controls work on the actual phone.",
+        "Identity, private/on-air state and seller boundaries remain clear.",
+        "No emulation is presented as physical-device evidence."
+      ],
+      "evidenceKinds": [
+        "screen-recording",
+        "receiver-recording",
+        "device-record",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "physicalDevice",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "requirements": [
+        "R010",
+        "R017",
+        "R021",
+        "R039",
+        "R059"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T026",
+      "title": "Mobile orientation, camera and suspension lifecycle",
+      "method": "real-device",
+      "variants": [
+        "android-chrome",
+        "iphone-safari"
+      ],
+      "steps": [
+        "Begin with the physical guest on air.",
+        "Rotate and switch cameras, then background/lock and foreground the guest.",
+        "Record platform mute/end/suspension events and public output."
+      ],
+      "expected": [
+        "Controls remain usable through orientation/device change.",
+        "Observed suspension/mute/end gates guest media within 2000 ms.",
+        "Resume requires checks/backstage and explicit re-admission."
+      ],
+      "evidenceKinds": [
+        "screen-recording",
+        "receiver-recording",
+        "device-record",
+        "event-timeline",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "observedSuspensionToExclusionMs",
+          "op": "<=",
+          "value": 2000
+        },
+        {
+          "key": "automaticReadmissions",
+          "op": "==",
+          "value": 0
+        }
+      ],
+      "requirements": [
+        "R035",
+        "R040"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T027",
+      "title": "Unsupported capabilities and direct-open recovery",
+      "method": "assisted-browser",
+      "variants": [
+        "no-canvas-capture",
+        "unsupported-host",
+        "blocked-guest-embed"
+      ],
+      "steps": [
+        "Run with the selected unsupported capability or blocked embed.",
+        "Attempt setup/publishing.",
+        "Follow the offered supported-browser/direct-open path."
+      ],
+      "expected": [
+        "The limitation is explained without fake Ready/Publishing status.",
+        "No stuck camera or output session remains.",
+        "Supported recovery preserves event/session authorization."
+      ],
+      "evidenceKinds": [
+        "screenshot",
+        "diagnostic-export",
+        "network-summary"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R012",
+        "R041"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T028",
+      "title": "Message origin, schema and privilege rejection",
+      "method": "browser",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Create a valid studio session with read-only diagnostics enabled.",
+        "Send controlled malformed/cross-event/stale/untrusted-source messages into its message boundary.",
+        "Compare diagnostics and visible guest/output state before and after."
+      ],
+      "expected": [
+        "All forged commands are rejected without media/program/commerce mutation.",
+        "No test-only hook bypasses trusted authorization.",
+        "Existing player commerce buses remain separate."
+      ],
+      "evidenceKinds": [
+        "playwright-json",
+        "screenshot"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R003",
+        "R022",
+        "R042",
+        "R047",
+        "R051"
+      ],
+      "automatedImplementation": "validation/browser/studio.spec.mjs"
+    },
+    {
+      "id": "T029",
+      "title": "Command races and generation invalidation",
+      "method": "assisted-integration",
+      "variants": [
+        "admit-remove-race",
+        "duplicate-request",
+        "old-generation"
+      ],
+      "steps": [
+        "Race admit/remove, retry a duplicate request ID and reorder acknowledgements.",
+        "Replace or reconnect the guest.",
+        "Replay old-generation admit/control messages and observe the program."
+      ],
+      "expected": [
+        "Removed/replaced guest never returns on air.",
+        "Commands are idempotent and stale generations are rejected.",
+        "Acknowledgements identify the applied program revision."
+      ],
+      "evidenceKinds": [
+        "event-timeline",
+        "service-log",
+        "receiver-recording",
+        "diagnostic-export"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R009",
+        "R015",
+        "R020",
+        "R042",
+        "R044"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T030",
+      "title": "Credential isolation and redacted evidence",
+      "method": "assisted-integration",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Use distinctive synthetic host/ingest secret canaries and expired disposable invites.",
+        "Inspect guest network/DOM/storage, host persistent storage, analytics and exported logs.",
+        "Review evidence before sharing; remove/redact live capabilities."
+      ],
+      "expected": [
+        "Host/ingest secrets never cross into guest/public surfaces or persistent stores.",
+        "Sensitive URLs and payloads are redacted from shareable diagnostics.",
+        "Media traces/artifacts remain in ignored private output directories."
+      ],
+      "evidenceKinds": [
+        "network-summary",
+        "secret-scan-report",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "hostSecretLeaks",
+          "op": "==",
+          "value": 0
+        }
+      ],
+      "requirements": [
+        "R007",
+        "R014",
+        "R022",
+        "R043"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T031",
+      "title": "Keyboard, focus and assistive presentation",
+      "method": "accessibility",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Complete the critical host/guest flow with keyboard only.",
+        "Float/return/close PiP and trigger a recoverable error.",
+        "Inspect names, focus order, status announcements and private-message presentation with assistive tooling."
+      ],
+      "expected": [
+        "Every critical control is reachable/operable and focus returns predictably.",
+        "State is not conveyed by color alone.",
+        "Private messages are not announced into public chat."
+      ],
+      "evidenceKinds": [
+        "screen-recording",
+        "accessibility-report",
+        "screenshot"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R048"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T032",
+      "title": "Critical viewport layouts",
+      "method": "browser",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "At 1280x720 inspect console listings/public chat/co-host entry and studio controls.",
+        "At 360x640 inspect the guest setup/backstage/on-air controls.",
+        "Traverse visible controls and inspect horizontal overflow."
+      ],
+      "expected": [
+        "Critical controls are visible, usable and not clipped.",
+        "Guest viewport has no horizontal document overflow.",
+        "Host co-host entry does not obscure listings or buyer chat."
+      ],
+      "evidenceKinds": [
+        "playwright-json",
+        "screenshot"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R004",
+        "R049"
+      ],
+      "automatedImplementation": "validation/browser/studio.spec.mjs"
+    },
+    {
+      "id": "T033",
+      "title": "Host camera/microphone loss and switch",
+      "method": "assisted-browser",
+      "variants": [
+        "camera",
+        "microphone"
+      ],
+      "steps": [
+        "Publish while the guest is admitted.",
+        "Remove/switch the selected host input or deny its renewed permission.",
+        "Observe program placeholder/silence, error recovery and active track counts."
+      ],
+      "expected": [
+        "State reflects actual device availability; no frozen success state.",
+        "Retry/switch is explicit and restores only permitted capture.",
+        "No duplicated host tracks/audio."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "diagnostic-export",
+        "screen-recording"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R017",
+        "R036"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T034",
+      "title": "Thirty-minute media and interaction soak",
+      "method": "performance-media",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Use the declared desktop hardware/browser and moving source fixtures; record continuous receiver output and samples.",
+        "Warm up five minutes, then exercise chat/listings/layouts/float/return during a total run of at least 1800 seconds.",
+        "Compare post-warmup and final five-minute median renderer heap; inspect source motion and queues."
+      ],
+      "expected": [
+        "At least 25 decoded fps and no unplanned source-motion freeze over 1000 ms under normal operation.",
+        "At most one publisher and bounded frame queues.",
+        "JS heap median growth is no more than 100 MiB."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "media-analysis",
+        "performance-report",
+        "event-timeline",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "soakSeconds",
+          "op": ">=",
+          "value": 1800
+        },
+        {
+          "key": "decodedFps",
+          "op": ">=",
+          "value": 25
+        },
+        {
+          "key": "maxFreezeMs",
+          "op": "<=",
+          "value": 1000
+        },
+        {
+          "key": "heapGrowthMiB",
+          "op": "<=",
+          "value": 100
+        },
+        {
+          "key": "maxProgramPublishers",
+          "op": "<=",
+          "value": 1
+        }
+      ],
+      "requirements": [
+        "R005",
+        "R033",
+        "R052",
+        "R053",
+        "R055"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T035",
+      "title": "A/V alignment, conversational delay and echo",
+      "method": "timing-media",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Use synchronized visible flash/audio-pulse fixtures and a declared controlled network of at most 20 ms added RTT and no induced loss.",
+        "Collect at least 30 observations of call and local-program timing.",
+        "Exercise headphones and normal speaker echo cancellation; record audience delay separately."
+      ],
+      "expected": [
+        "p95 A/V skew <=150 ms, one-way call delay <=750 ms and local-program receiver delay <=2000 ms.",
+        "No sustained self-return/doubled voice; no delayed buyer audio in the call.",
+        "Wall clocks/timelines are synchronized or uncertainty is bounded and reported."
+      ],
+      "evidenceKinds": [
+        "receiver-recording",
+        "media-analysis",
+        "timing-report",
+        "event-timeline"
+      ],
+      "metrics": [
+        {
+          "key": "avSkewP95Ms",
+          "op": "<=",
+          "value": 150
+        },
+        {
+          "key": "callOneWayP95Ms",
+          "op": "<=",
+          "value": 750
+        },
+        {
+          "key": "localProgramP95Ms",
+          "op": "<=",
+          "value": 2000
+        },
+        {
+          "key": "timingObservations",
+          "op": ">=",
+          "value": 30
+        }
+      ],
+      "requirements": [
+        "R018",
+        "R023",
+        "R054"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T036",
+      "title": "Integrated QA buyer program and commerce context",
+      "method": "qa-integration",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Use an explicitly authorized prepared QA event and original seller/item; start event only through existing consent/controls if needed.",
+        "Observe actual buyer playback while admitting/removing guest and changing layouts.",
+        "Send unique private host/guest messages; inspect a separate buyer session and its chat/network traffic throughout a declared observation window.",
+        "End the prepared event through its existing control and observe studio teardown."
+      ],
+      "expected": [
+        "At least two program revisions reach the real buyer with the original event/seller/item.",
+        "Neither private message reaches buyer chat, buyer message payloads or program overlays; console-only absence is insufficient.",
+        "Publishing and event lifecycle stay distinct; no bid/purchase is executed.",
+        "Ended event denies new admission and tears down output within 5000 ms of detection."
+      ],
+      "evidenceKinds": [
+        "buyer-recording",
+        "network-summary",
+        "event-timeline",
+        "service-log",
+        "screenshot"
+      ],
+      "metrics": [
+        {
+          "key": "buyerProgramTransitions",
+          "op": ">=",
+          "value": 2
+        },
+        {
+          "key": "privateMessageBuyerLeaks",
+          "op": "==",
+          "value": 0
+        },
+        {
+          "key": "sellerMismatchCount",
+          "op": "==",
+          "value": 0
+        },
+        {
+          "key": "eventEndDetectedToStopMs",
+          "op": "<=",
+          "value": 5000
+        }
+      ],
+      "requirements": [
+        "R001",
+        "R014",
+        "R022",
+        "R023",
+        "R025",
+        "R029",
+        "R054",
+        "R056",
+        "R058",
+        "R059"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T037",
+      "title": "Current host application regression and integration conventions",
+      "method": "integration-review",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Review the implementation diff against the pinned current integration map and current contributor/testing/messaging guides.",
+        "Exercise feature-off host console and enabled listing/chat/consent/event controls; run appropriate existing build/type/i18n/generated-file checks in the implementation checkout.",
+        "Inspect SSR and messaging integration; record pre-existing failures separately."
+      ],
+      "expected": [
+        "Feature-off behavior and existing seller workflows are preserved.",
+        "Context/grants, English i18n/codegen, logger and browser/server boundaries are respected.",
+        "Historical experiment code is not blindly restored over current source."
+      ],
+      "evidenceKinds": [
+        "diff-review",
+        "build-report",
+        "screen-recording",
+        "network-summary"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R002",
+        "R004",
+        "R006",
+        "R050",
+        "R051",
+        "R060"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T038",
+      "title": "Pinned engine, origin policy and deployment feasibility",
+      "method": "deployment-integration",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Record implementation/engine revisions and actual served origins/headers.",
+        "Verify the selected same-origin media-access or explicit frame/audio bridge path.",
+        "Exercise camera/mic iframe delegation and custom-canvas output without screen sharing."
+      ],
+      "expected": [
+        "Origin/policy assumptions are demonstrated in the actual deployment.",
+        "Alpha/release source is pinned or vendored, not an unversioned moving dependency.",
+        "Browser/canvas support is truthful and no cross-origin DOM access is assumed."
+      ],
+      "evidenceKinds": [
+        "build-manifest",
+        "network-summary",
+        "receiver-recording",
+        "diagnostic-export"
+      ],
+      "metrics": [
+        {
+          "key": "enginePinVerified",
+          "op": "==",
+          "value": true
+        }
+      ],
+      "requirements": [
+        "R012",
+        "R024",
+        "R041",
+        "R045",
+        "R046"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T039",
+      "title": "Independent evidence and truthful diagnostics",
+      "method": "evidence-review",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Compare application diagnostics with output network counters and independent receiver/buyer artifacts.",
+        "Confirm telemetry has no mutating acceptance backdoor or fabricated success counter.",
+        "Check timestamps, generation and program revisions across evidence."
+      ],
+      "expected": [
+        "Preview, call transport, program output and audience confirmation are separately proven.",
+        "Read-only telemetry agrees with independent observations.",
+        "Missing dependencies/results remain blocked or not_run."
+      ],
+      "evidenceKinds": [
+        "diagnostic-export",
+        "network-summary",
+        "receiver-recording",
+        "evidence-review"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R011",
+        "R015",
+        "R027",
+        "R046",
+        "R047",
+        "R057"
+      ],
+      "automatedImplementation": null
+    },
+    {
+      "id": "T040",
+      "title": "Reproducible handoff and unchanged review checkout",
+      "method": "handoff-review",
+      "variants": [
+        "default"
+      ],
+      "steps": [
+        "Inspect setup commands, decisions, contract traceability and all required case variants.",
+        "Compare the source snapshot with its review baseline, explicitly reporting scope/unreadable files.",
+        "Confirm future implementation is isolated and completion claims match evidence."
+      ],
+      "expected": [
+        "No edits were made to the inspected host application source by this review package.",
+        "Commands and dependencies are reproducible.",
+        "Mobile-web scope and deferred features are documented; no skipped/missing result is promoted to accepted."
+      ],
+      "evidenceKinds": [
+        "source-comparison",
+        "build-manifest",
+        "evidence-review"
+      ],
+      "metrics": [],
+      "requirements": [
+        "R057",
+        "R058",
+        "R059",
+        "R060"
+      ],
+      "automatedImplementation": null
+    }
+  ],
+  "rules": {
+    "allVariantsRequired": true,
+    "onlyPassingStatus": "passed",
+    "noSkips": true,
+    "sameImplementationRevision": true,
+    "sameEngineRevision": true,
+    "independentMediaEvidenceRequired": true,
+    "mockOnlyCannotAcceptFullProfile": true
+  },
+  "provenance": "Public live-collaboration exploration, VDO.Ninja/browser references, and proposed prototype defaults. No private source revision or deployment API is distributed. See integration-map.md and review-findings.md. Not approved production SLAs.",
+  "distribution": "public-sanitized",
+  "publishedAt": "2026-10-16",
+  "reviewStatus": "open-findings"
+}

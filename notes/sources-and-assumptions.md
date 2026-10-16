@@ -12,6 +12,9 @@ The public notes make no claim about private product plans, current native imple
 - [SDK website](https://sdk.vdo.ninja/) — examples and feature overview.
 - [Connection guide](https://sdk.vdo.ninja/docs/connecting.html) — media publishing/viewing, room interoperability, and TURN considerations.
 - [Integration guide](https://sdk.vdo.ninja/docs/guides.html) — distinction between SDK transport and application responsibilities.
+- [Studio and popout research](studio-and-popout.md) — VDO.Ninja iframe/director references, exact-origin media access, browser PiP/lifecycle references, WHIP and Playwright.
+
+The [public build contract](../build-contract/README.md) contains proposed architecture and authored acceptance tooling. Its generic integration map does not disclose private source structure or claim existing backend APIs. Private research attachments, source maps, service locations and run evidence remain excluded.
 
 The site does not install or load the SDK. SDK compatibility with any particular broadcasting platform, browser, native application, or ingest endpoint is unverified here.
 

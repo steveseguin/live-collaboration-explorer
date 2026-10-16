@@ -1,5 +1,7 @@
 # Choosing a first prototype
 
+**Detailed browser work order:** the newer [build contract](../build-contract/README.md) selects a persistent studio with a compact console launcher, pinned VDO.Ninja iframe, custom canvas/audio program, and optional Document PiP. It supplies requirements, pseudocode, acceptance procedures and validation source, but is not an implemented product. Read its [open review findings](../build-contract/review-findings.md) before relying on completion claims. The [studio research](studio-and-popout.md) explains the public technical references.
+
 A prototype can be web, native, or server-based. Its scope should follow the uncertainty it is meant to resolve.
 
 ## Candidate experiments

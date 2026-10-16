@@ -28,6 +28,8 @@ This is an unofficial design study by Steve Seguin. Interactive interfaces, part
 - [Use cases](notes/use-cases.md) — participants, audience, commerce, and placement.
 - [Implementation options](notes/implementation-options.md) — 30 possible routes and their tradeoffs.
 - [Prototype plan](notes/prototype-plan.md) — questions and experiments that could guide a first build.
+- [Persistent studio and popout research](notes/studio-and-popout.md) — iframe media access, custom canvas/audio, Document PiP, and public technical references.
+- [Build and acceptance contract](build-contract/README.md) — public-safe PRD/TRD, pseudocode, 60 requirements, 40 scenarios, 80 mandatory variants, and validation source; specified, not implemented or accepted, with open review findings.
 - [Sources and assumptions](notes/sources-and-assumptions.md) — public references and boundaries.
 
 ## Run locally
@@ -48,6 +50,7 @@ Open `http://127.0.0.1:8767/`. No install or build step is required. Google Font
 - `sources/` — selected design images and a source inventory.
 - `assets/` — original SVG illustrations.
 - `notes/` — Markdown design notes.
+- `build-contract/` — proposed build specification and external acceptance tooling; private source maps, credentials, original research attachments and run artifacts are excluded.
 - `.nojekyll` — direct static publishing with GitHub Pages.
 
 GitHub Pages serves the root of the `main` branch. Updates to these files publish through Pages.

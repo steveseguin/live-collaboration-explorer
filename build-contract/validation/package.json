@@ -1,0 +1,12 @@
+{
+  "name": "cohost-prototype-acceptance",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "External workflow acceptance harness; never installs or runs from host application.",
+  "scripts": {
+    "test:browser": "playwright test --config=playwright.config.mjs",
+    "list": "playwright test --config=playwright.config.mjs --list"
+  },
+  "devDependencies": { "@playwright/test": "1.64.1" }
+}
