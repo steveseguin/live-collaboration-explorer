@@ -139,6 +139,8 @@ python snapshot_source.py "C:\path\to\host-application" --tracked-only --prefix 
 python snapshot_source.py "C:\path\to\host-application" --tracked-only --prefix src/ --prefix package.json --out runs\review\after.json --compare runs\review\before.json
 ```
 
+Use distinct output and comparison snapshot files. The tool rejects identical paths and filesystem aliases so a comparison cannot overwrite its baseline. Run snapshot CLI regressions with `python -m unittest discover -s tests -v` from this directory.
+
 Do not describe selected-prefix equality as a whole-filesystem audit. Report unreadable files and concurrent changes; never revert another person's work.
 
 ## References

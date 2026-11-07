@@ -56,11 +56,15 @@ def main():
     root, out = args.source.resolve(), args.out.resolve()
     if out.is_relative_to(root):
         parser.error('Output must be outside the inspected source checkout.')
+    if args.compare:
+        compare = args.compare.resolve()
+        if out == compare or (out.exists() and compare.exists() and out.samefile(compare)):
+            parser.error('Output must be different from the comparison snapshot; refusing to overwrite baseline evidence.')
+        old = json.loads(compare.read_text(encoding='utf-8'))
     data = snapshot(root, args.tracked_only, args.prefix)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(data, indent=2) + '\n', encoding='utf-8')
     if args.compare:
-        old = json.loads(args.compare.read_text(encoding='utf-8'))
         changed = sorted(name for name in set(old['files']) | set(data['files'])
                          if old['files'].get(name) != data['files'].get(name))
         unknown = sorted(name for name, item in data['files'].items() if 'unreadable' in item)
